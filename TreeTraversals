@@ -1,0 +1,109 @@
+1) INORDER:
+--------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int>res;
+        inorder(root,res);
+        return res;       
+    }
+
+    void inorder(TreeNode* root,vector<int>&res){
+        if(root==nullptr) return;
+        inorder(root->left, res);
+        res.push_back(root->val);
+        inorder(root->right,res);
+    }
+};
+
+2) PREORDER: RECURSION METHOD || ( STACK METHOD = PUSH NODEVAL - NODERIGHT - NODELEFT )
+------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int>res;
+        preorder(root,res);
+        return res;
+    }
+
+    void preorder(TreeNode* root, vector<int> &res){
+        if(root==nullptr) return;
+        res.push_back(root->val);
+        preorder(root->left,res);
+        preorder(root->right,res);
+    }
+};
+
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int>res;
+        if(root==nullptr) return res;
+        stack<TreeNode*>st;
+        st.push(root);
+
+        while(!st.empty()){
+            TreeNode* node=st.top();
+            st.pop();
+            res.push_back(node->val);
+            if(node->right!=NULL) st.push(node->right);
+            if(node->left!=NULL) st.push(node->left);
+        }
+        
+        return res;
+    }
+};
+
+
+3) POSTORDER: RECURSION METHOD || ( STACK METHOD = PUSH NODEVAL - NODELEFT - NODERIGHT (REVERSE) )
+------------------------------------------------------
+
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int>res;
+        postorder(root,res);
+        return res;
+    }
+
+    void postorder(TreeNode* root, vector<int> &res){
+        if(root==nullptr) return;
+        postorder(root->left,res);
+        postorder(root->right,res);
+        res.push_back(root->val);
+    }
+};
+
+4) LEVEL ORDER: = ( postorder stack kinda...nodeleft - noderight - nodeval )
+----------------------------------------------------
+
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>>res;
+        if(root==nullptr) return res;
+        queue<TreeNode*>q;
+        q.push(root);
+
+        while(!q.empty()){
+
+            int n=q.size();   // no of nodes in that level = curr queue size
+            vector<int>v;
+
+            for(int i=0;i<n;i++){ //for all nodes in that level, keep in v
+             TreeNode* node=q.front();
+             q.pop();
+             if(node->left!=NULL) q.push(node->left);
+             if(node->right!=NULL) q.push(node->right);
+             v.push_back(node->val);
+            }
+
+            res.push_back(v);
+
+        }
+        return res;
+    }
+};
