@@ -1,0 +1,38 @@
+1) SAME BT:
+--------------------------------------------------
+
+// if(p==nullptr || q==nullptr) return p==q; 
+// if any one tree is null, we'll check for 3 cases
+// null null....return true
+// null node....return false
+// node null....return false
+
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if(p==nullptr || q==nullptr) return p==q;
+        return ((p->val==q->val) && isSameTree(p->left,q->left) && isSameTree(p->right,q->right));
+    }
+};
+
+2) SYMMETRIC BT:
+--------------------------------------------------------------
+
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(root==nullptr) return true;
+        return isMirror(root->left,root->right);
+    }
+
+    bool isMirror(TreeNode* left,TreeNode* right){ //root->left and root->right
+        if(!left && !right) return true;
+        if(!left || !right) return false;
+        return ((left->val==right->val) &&
+               isMirror(left->left,right->right) &&
+               isMirror(left->right,right->left));        
+    }
+
+
+
+};
