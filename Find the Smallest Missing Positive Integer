@@ -1,0 +1,22 @@
+// store all positives in set
+// then initiate least positive ans, and check if its present
+// like ans= 1, check upto end ,if not there, return ans
+// if not, check for 2..likewise..
+
+
+int findSmallestMissingPositive(vector<int> orderNumbers) {
+    unordered_set<int>s;
+    for(int x:orderNumbers){
+        if(x>0){
+            s.insert(x);
+        }
+    }
+    
+    int ans=1; //least positive
+    while(true){
+        if(s.find(ans)==s.end()){
+            return ans;
+        }
+        ans++;
+    }
+}
