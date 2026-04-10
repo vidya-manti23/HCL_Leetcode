@@ -1,0 +1,37 @@
+1) HASHMAP
+
+vector<int> findTaskPairForSlot(vector<int> arr, int target) {
+  int n=arr.size();
+  unordered_map<int,int>m; // value -> index
+  
+  for(int i=0;i<n;i++){
+    int need= target-arr[i];
+    if(m.find(need)!=m.end()){
+        return {m[need],i};
+    }
+    m[arr[i]]=i;
+  }  
+  return {-1,-1};  
+}
+
+2) TWO POINTER = ONLY IF ARRAY SORTED
+
+vector<int> twoSum(vector<int>& arr, int target) {
+    int left = 0, right = arr.size() - 1;
+
+    while(left < right) {
+        int sum = arr[left] + arr[right];
+
+        if(sum == target) {
+            return {left, right};
+        }
+        else if(sum < target) {
+            left++;
+        }
+        else {
+            right--;
+        }
+    }
+
+    return {-1, -1};
+}
