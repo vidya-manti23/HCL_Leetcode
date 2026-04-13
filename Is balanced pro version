@@ -3,7 +3,7 @@
 // else if (close){
      if stack dont have any, then crash false;
      if matched: pop;
-     else false; // stack has letters or numbers..
+     else false; //closed and not matched
   }
 
 // return st.empty() for every balanced parenthesis problem..
