@@ -1,0 +1,14 @@
+class Solution {
+public:
+    
+    bool isValid(TreeNode* node, long minvalue, long maxvalue){
+        if(node==nullptr) return true;
+        if(node->val<=minvalue || node->val>=maxvalue) return false;
+        return isValid(node->left, minvalue, node->val) && 
+               isValid(node->right, node->val, maxvalue);
+    }
+   
+    bool isValidBST(TreeNode* root) {  //original function
+      return  isValid(root, LONG_MIN, LONG_MAX);
+    }
+};
