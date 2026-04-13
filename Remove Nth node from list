@@ -1,0 +1,29 @@
+class Solution {
+public: 
+
+ // if head is at null, then temp is n nodes from end of list, temp->next is what we delete
+ // so first move head n steps, then move head and temp together until head reaches end
+ // so the gap is n nodes always.
+
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        // dummy->head-> nodes....->NULL
+        ListNode* dummy = new ListNode (0, head);
+        ListNode* temp= dummy; //points to dummy and now its in head
+
+        for(int i=1;i<=n;i++){
+            head=head->next; //move head n steps
+        }
+
+        while(head!=NULL){
+            head=head->next; //now head is at end
+            temp=temp->next; //moving together, now temp is 1 node before to delete
+        }
+
+        temp->next=temp->next->next; //changing next pointer /deletion
+
+        ListNode* res=dummy->next; //original head is at end, so return usual head ie dummy->next
+        delete dummy;
+        return res;
+
+    }
+};
