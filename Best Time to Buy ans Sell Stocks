@@ -1,0 +1,22 @@
+1) store mini
+2) if not min, then check the profit
+3) update max profit
+
+class Solution {
+public:
+    int maxProfit(vector<int>& nums) {
+        int n=nums.size();
+        int mini=INT_MAX;
+        int maxprofit=0;
+
+        for(int i=0;i<n;i++){
+            if(nums[i]<mini){
+                mini=nums[i];
+            }
+            else{
+                maxprofit=max(maxprofit,nums[i]-mini);
+            }
+        }
+        return maxprofit;
+    }
+};
