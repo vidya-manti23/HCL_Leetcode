@@ -1,4 +1,4 @@
-// push all chars to stack, it may have letters, digits , brackets and stuff
+// create stack
 // if(open) push
 // else if (close){
      if stack dont have any, then crash false;
