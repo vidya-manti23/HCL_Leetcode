@@ -1,0 +1,24 @@
+1) root = mid
+2) root left = recursively build
+3) root right = recursively build
+4) return root
+
+class Solution {
+public:
+   TreeNode* build(vector<int>& nums, int left, int right){
+
+    if(left>right) return NULL;  //base case
+
+    int mid=(left+right)/2;   // everytime mid=root
+
+    TreeNode* root=new TreeNode(nums[mid]);  //root
+    root->left= build(nums, left, mid-1);    // root left
+    root->right = build(nums, mid+1, right); // root right
+
+    return root;
+   }
+
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+        return build(nums,0, nums.size()-1);
+    }
+};
