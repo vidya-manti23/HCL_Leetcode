@@ -14,8 +14,14 @@ public:
             int mid = low + (high - low) / 2;
 
             if (nums[mid] == target) { 
-                return mid;
+                return mid;                       //return true for rotated sorted array 2 ; return value bool akkada
+            }            
+           
+            if(nums[low] == nums[mid] && nums[mid] == nums[high]){ //remove dups
+                low++;
+                high--;
             }
+
             else if (nums[low] <= nums[mid]) { // left sorted
                 if (nums[low] <= target && target < nums[mid]) {
                     high = mid - 1; //check in sorted
@@ -31,6 +37,6 @@ public:
                 }
             }           
         }
-        return -1;
+        return -1;        //return false
     }
 };
