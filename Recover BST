@@ -1,0 +1,36 @@
+//INORDER OF BST GIVES SORTED ARRAY
+
+// SO, IF PREV VALUE> CURR ROOOT, THEN THAT VIOLATION
+// IF FIRST NOT THERE, THEN FIRST WILL BE PREV 
+// SECOND WILL BE CURR ROOT
+
+
+// AND PREV WILL ALWAYS BE CURR ROOT
+
+class Solution {
+public:
+
+    TreeNode *first=NULL,*second=NULL, *prev=NULL;
+
+    void inorder(TreeNode* root){
+        if(root==nullptr) return;
+
+        inorder(root->left);
+
+        if(prev && prev->val > root-> val){
+            if(!first){
+                first=prev;
+            }
+            second = root;
+        }
+        prev=root;
+
+
+        inorder(root->right);
+    }
+ 
+    void recoverTree(TreeNode* root) {
+        inorder(root);
+        swap(first->val,second->val);
+    }
+};
