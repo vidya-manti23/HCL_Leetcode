@@ -1,0 +1,37 @@
+1) - go to last, - count how many nodes are there, and - make it circular
+2) stepstomove= count- (k%count)
+* 3) newtail starts from temp, and go upto stepstomove....[[[[newtail ~ stepstomove]]]]
+4) newhead = newtail->next;
+5) return newhead;
+
+
+class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if(head==nullptr || head->next==nullptr || k==0){
+            return head;
+        }
+        ListNode* temp=head;
+        int count=1;
+        while(temp->next!=NULL){
+            temp=temp->next;
+            count++;
+        } //count=5, temp is at 5
+
+        int stepstomove=count - (k%count); //3
+
+        temp->next= head; //made it circular
+
+        ListNode* newtail= temp;
+        while(stepstomove>0){
+            newtail=newtail->next;
+            stepstomove--;
+        } //newtail at 3
+
+        ListNode* newhead= newtail->next;
+        newtail->next=NULL;
+
+        return newhead;
+
+    }
+};
