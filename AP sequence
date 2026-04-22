@@ -1,0 +1,20 @@
+int findLongestArithmeticProgression(vector<int> nums, int k) {
+    if(nums.empty()) return 0;
+    int ans=0;
+    
+    set<int>s (nums.begin(),nums.end()); //sorted , unique
+    unordered_map<int,int> m; // key= element, value= extended_len if x-k exists
+     
+    for(int x:s){ // x= element, m[x] stores length
+        if(m.find(x-k)!=m.end()){
+            m[x]=m[x-k]+1; // if prev element with x-k diff vunte, extend len
+        }else{
+            m[x]=1; //else start from 1, new sequence la
+        }
+        
+        ans= max(ans, m[x]);
+    }
+    return ans;
+    
+
+}
